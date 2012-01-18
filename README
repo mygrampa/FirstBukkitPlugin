@@ -1,0 +1,7 @@
+This project is a first plugin that just prints a broadcast when different actions take place.
+It implements:
+EntityListener - intercepts specific entity events
+PlayerListener - intercepts specific player events
+BlockListener - intercepts specific block events
+mob damage command - changes/sets configuration items Value.MobDamage and/or Toggle.Damage.MobDamage
+player damage command - changes/sets configuration items Value.PlayerDamage and/or Toggle.Damage.PlayerDamage

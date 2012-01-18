@@ -1,0 +1,23 @@
+name: FirstPlugin
+main: me.mygrampa.firstplugin.FirstPlugin
+version: 0.0.1
+description:
+    This plugin is a template for use in writing plugins for craftBukkit/Minecraft.
+    It only sends broadcast messages to the players, but it is a fully functional plugin.
+authors: [mygrampa, theguynextdoor]
+website:
+    http://cpminecraft.mygrampa.org
+permissions:
+    firstplugin.*:
+       description: Gives access to all first plugin commands
+    firstplugin.damage:
+        description: Allows you to set first plugin values
+        default: op
+
+commands:
+    player:
+        description: sets or toggles player damage
+        usage: /<command> on/off/<0 or positive integer>
+    mob: 
+        description: sets or toggles mob damage
+        usage: /<command> on/off/<0 or positive integer>
