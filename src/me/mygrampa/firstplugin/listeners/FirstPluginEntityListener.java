@@ -1,5 +1,7 @@
 package me.mygrampa.firstplugin.listeners;
 
+import org.bukkit.event.Listener;
+import org.bukkit.event.EventHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.Entity;
@@ -7,20 +9,18 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityListener;
 
 import me.mygrampa.firstplugin.FirstPlugin;
 
-public class FirstPluginEntityListener extends EntityListener {
-	FirstPlugin plugin;
-
-	public FirstPluginEntityListener(FirstPlugin instance) {
-		plugin = instance;
+public class FirstPluginEntityListener implements Listener {
+	private FirstPlugin plugin;
+	public FirstPluginEntityListener(FirstPlugin plugin) {
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 
-	@Override
+	@EventHandler
 	public void onEntityDamage(EntityDamageEvent e) {
-		Bukkit.broadcastMessage("In EntityListener");
+		
 		if (e instanceof EntityDamageByEntityEvent) {
 			Entity attacker = ((EntityDamageByEntityEvent) e).getDamager();
 

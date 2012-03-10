@@ -1,6 +1,6 @@
 name: FirstPlugin
 main: me.mygrampa.firstplugin.FirstPlugin
-version: 0.0.1
+version: 0.0.2
 description:
     This plugin is a template for use in writing plugins for craftBukkit/Minecraft.
     It only sends broadcast messages to the players, but it is a fully functional plugin.

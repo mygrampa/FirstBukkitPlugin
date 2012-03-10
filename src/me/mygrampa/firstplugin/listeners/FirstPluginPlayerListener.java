@@ -1,23 +1,22 @@
 package me.mygrampa.firstplugin.listeners;
 
+import me.mygrampa.firstplugin.FirstPlugin;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.Listener;
+import org.bukkit.event.EventHandler;
 
-import me.mygrampa.firstplugin.FirstPlugin;
 
-public class FirstPluginPlayerListener extends PlayerListener {
-	FirstPlugin plugin;
-
-	public FirstPluginPlayerListener(FirstPlugin instance) {
-		plugin = instance;
+public class FirstPluginPlayerListener implements Listener {
+	public FirstPluginPlayerListener(FirstPlugin plugin) {
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
-
-	@Override
+	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e) {
 		final Player eplayer = e.getPlayer();
 		Block blockB = e.getClickedBlock();
