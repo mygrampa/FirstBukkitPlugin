@@ -3,14 +3,11 @@ package me.mygrampa.firstplugin;
 
 import java.util.logging.Logger;
 
-//import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-//import org.bukkit.plugin.PluginManager;
 
-import me.mygrampa.firstplugin.commands.MobDamageValue;
-import me.mygrampa.firstplugin.commands.PlayerDamageValue;
-//import me.mygrampa.firstplugin.listeners.FirstPluginBlockListener;
-//import me.mygrampa.firstplugin.listeners.FirstPluginPlayerListener;
+import me.mygrampa.firstplugin.commands.*;
+import me.mygrampa.firstplugin.listeners.*;
 
 public class FirstPlugin extends JavaPlugin{
 	Logger log = Logger.getLogger("Minecraft");
@@ -20,20 +17,36 @@ public class FirstPlugin extends JavaPlugin{
 	} // End of onDisable
 
 	public void onEnable(){
-		this.getConfig().addDefault("Value.PlayerDamage", 2);
-		this.getConfig().addDefault("Value.MobDamage", 2);
+		getConfig();
+		getConfig().addDefault("Value.PlayerDamage", 2);
+		getConfig().addDefault("Value.MobDamage", 2);
 
-		this.getConfig().addDefault("Toggle.Damage.MobDamage", true );
-		this.getConfig().addDefault("Toggle.Damage.PlayerDamage", true );
+		getConfig().addDefault("Toggle.Damage.MobDamage", true );
+		getConfig().addDefault("Toggle.Damage.PlayerDamage", true );
 
-		this.getConfig().addDefault("Debug.Damage.Messages", false );
+		getConfig().addDefault("Debug.Damage.Messages", false );
+
+		getConfig().addDefault("Message.Welcome", "Hello, welcome to First Plugin");
+		getConfig().addDefault("Message.EntityListener", "From Entity Listener: ");
+		getConfig().addDefault("Message.BlockListener", "From Block Listener: ");
+		getConfig().addDefault("Message.PlayerListener", "From Player Listener: ");
 		
-		this.getConfig().options().copyDefaults(true);
-		this.saveConfig();
-		
+		getConfig().options().copyDefaults(true);
+		saveConfig();
+		//Set up a PluginManager to regeter events
+		PluginManager pm = getServer().getPluginManager();
+		//register the listeners
+		pm.registerEvents(new FirstPluginBlockListener(this), this);
+		pm.registerEvents(new FirstPluginPlayerListener(this), this);
+		pm.registerEvents(new FirstPluginEntityListener(this), this);
+		pm.registerEvents(new FirstPluginConfigListener(this), this);
+		//register the commands
 		getCommand("player").setExecutor(new PlayerDamageValue(this));
 		getCommand("mob").setExecutor(new MobDamageValue(this));
+		getCommand("setmessage").setExecutor(new FirstPluginConfigCommand(this));
+		
 		log.info(this.getDescription().getName() + " has been enabled");
 	} // End of onEnable
+
 
 } // End of FirstPlugin

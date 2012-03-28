@@ -2,7 +2,6 @@ package me.mygrampa.firstplugin.listeners;
 
 import me.mygrampa.firstplugin.FirstPlugin;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -13,12 +12,14 @@ import org.bukkit.event.EventHandler;
 
 
 public class FirstPluginPlayerListener implements Listener {
-	public FirstPluginPlayerListener(FirstPlugin plugin) {
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	private FirstPlugin plugin;
+	public FirstPluginPlayerListener(FirstPlugin instance) {
+		plugin = instance;
 	}
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e) {
-		final Player eplayer = e.getPlayer();
+		plugin.getConfig();
+		final Player player = e.getPlayer();
 		Block blockB = e.getClickedBlock();
 		final Material iih = e.getPlayer().getItemInHand().getType();
 
@@ -27,7 +28,7 @@ public class FirstPluginPlayerListener implements Listener {
 			if (blockB.isLiquid()) {
 				return;
 			}
-			Bukkit.broadcastMessage("From PlayerListener:Player " + eplayer + " right clicked a block of " + blockB + " while holding" + iih + "!!!");
+			player.sendMessage(plugin.getConfig().getString("Message.PlayerListener").replaceAll("(&([a-f0-9]))", "\u00A7$2") + player + " right clicked a block of " + blockB + " while holding" + iih + "!!!");
 		}
 	}// End of onPlayerInteract
 } // End of Player Listener

@@ -33,9 +33,9 @@ public class PlayerDamageValue implements CommandExecutor {
 					plugin.saveConfig();
 					return true;
 				}
-				else if (Util.isInt(args[1])) {
-					plugin.getConfig().set("Value.PlayerDamage", Util.getInt(args[1]));
-					sender.sendMessage(ChatColor.RED + "[FirstPlugin] " + ChatColor.YELLOW + "Player damage is now set to " + Util.getInt(args[1]));
+				else if (FirstPluginUtil.isInt(args[1])) {
+					plugin.getConfig().set("Value.PlayerDamage", FirstPluginUtil.getInt(args[1]));
+					sender.sendMessage(ChatColor.RED + "[FirstPlugin] " + ChatColor.YELLOW + "Player damage is now set to " + FirstPluginUtil.getInt(args[1]));
 					plugin.saveConfig();
 					return true;
 				}

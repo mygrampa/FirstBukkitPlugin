@@ -21,3 +21,6 @@ commands:
     mob: 
         description: sets or toggles mob damage
         usage: /<command> on/off/<0 or positive integer>
+    setmessage:
+        description: sets the message to send
+        usage: /<command> <message>

@@ -10,8 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class MobDamageValue implements CommandExecutor {
-	FirstPlugin plugin;
-
+	private FirstPlugin plugin;
 	public MobDamageValue(FirstPlugin instance) {
 		plugin = instance;
 	}
@@ -31,9 +30,9 @@ public class MobDamageValue implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "[FirstPlugin] " + ChatColor.YELLOW + "Mob damage is now off");
 					return true;
 				}
-				else if (Util.isInt(args[1])) {
-					plugin.getConfig().set("Value.MobDamage", Util.getInt(args[1]));
-					sender.sendMessage(ChatColor.RED + "[FirstPlugin] " + ChatColor.YELLOW + "Mob damage is now set to " + Util.getInt(args[1]));
+				else if (FirstPluginUtil.isInt(args[1])) {
+					plugin.getConfig().set("Value.MobDamage", FirstPluginUtil.getInt(args[1]));
+					sender.sendMessage(ChatColor.RED + "[FirstPlugin] " + ChatColor.YELLOW + "Mob damage is now set to " + FirstPluginUtil.getInt(args[1]));
 					plugin.saveConfig();
 					return true;
 				}

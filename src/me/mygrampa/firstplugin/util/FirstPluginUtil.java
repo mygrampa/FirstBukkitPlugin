@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class Util {
+public class FirstPluginUtil {
 
 	public static int getInt(String string) {
 		if (isInt(string)) {
