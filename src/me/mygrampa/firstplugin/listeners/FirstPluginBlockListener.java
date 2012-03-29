@@ -26,7 +26,7 @@ public class FirstPluginBlockListener implements Listener {
 			return;
 		}
 		if (!(e.isCancelled())) {
-			player.sendMessage("From BlockListener: " + player + " broke a block of " + b + " while holding" + m + "!!!");
+			player.sendMessage("From BlockListener: " + player + " broke a block of " + b + " while holding" + m + "!!");
 		}
 		if (e.isCancelled()) {
 			return;
